@@ -1,36 +1,35 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sounddevice as sd
-import scipy
+import scipy.signal as signal
 
 # Capture a recording
-duration = 1  # seconds
-frequency_sample = 44100  # std sample rate of 44100 Hz
-channels_count = 1  # only care about 1 channel for this
-N_samples = duration * frequency_sample
-T_sample = 1.0 / frequency_sample
+audio_duration_s = 3  # seconds
+audio_sample_freq_hz = 44100  # std sample rate of 44100 Hz
+audio_channel_count = 1  # only care about 1 channel for this
+audio_sample_count = audio_duration_s * audio_sample_freq_hz
+audio_sample_period_s = 1.0 / audio_sample_freq_hz
 
-# print("Recording is starting...")
-# recording_1 = sd.rec(
-#     int(duration * frequency_sample), samplerate=frequency_sample, channels=channels_count, dtype="float64"
-# )
-# sd.wait()  # wait for recording to finish
-#
-# # Play the audio
-# print("Audio is playing...")
-# sd.play(recording_1, frequency_sample)
-# sd.wait()
+print("Recording is starting...")
+recording = sd.rec(
+    int(audio_duration_s * audio_sample_freq_hz),
+    samplerate=audio_sample_freq_hz,
+    channels=audio_channel_count,
+    # dtype="float64",
+)
+sd.wait()  # wait for recording to finish
+recording_channel_1 = recording[:, 0]
 
-x = np.linspace()
-y = * np.cos(2*np.pi*69*np.arange(N_samples))
+# Play the audio
+print("Audio is playing...")
+sd.play(recording, audio_sample_freq_hz)
+sd.wait()
 
-# Graph the frequency response
-y = scipy.fft.fft(recording_1)
-freq = scipy.fft.fftfreq(len(y))#[:N_samples//2]
-freq = scipy.fft.fftshift(freq)
-plt.figure()
-# plt.plot(normalized_freq[0:len(normalized_freq)//2], abs(y)[0:len(y)//2])
-def SliceIt(thing):
-    return thing#[0:len(thing)//2]
-plt.plot(SliceIt(freq), abs(SliceIt(y)))
+# Estimate the Power Spectral Density (PSD) of the recorded audio--note that the
+# estimate is proportional to the real PSD since the microphone's sensitivity is
+# unknown.
+f, Pxx_den = signal.welch(recording_channel_1, audio_sample_freq_hz)
+plt.semilogy(f, Pxx_den)
+plt.xlabel("frequency [Hz]")
+plt.ylabel("**proportional** PSD [W/Hz]")
 plt.show()
