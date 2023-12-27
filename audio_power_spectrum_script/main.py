@@ -52,11 +52,58 @@ def LoadRecording():
     return recording
 
 
+def CLIManipulateRecording(recording, action_encoding):
+    if action_encoding == "C":
+        recording = CaptureRecording()
+        recording = recording[:, 0]
+    elif action_encoding == "P":
+        if recording is None:
+            print("Load or Capture Recoding First")
+        else:
+            PlayRecording(recording)
+    elif action_encoding == "S":
+        if recording is None:
+            print("Load or Capture Recoding First")
+        else:
+            SaveRecording(recording)
+    elif action_encoding == "L":
+        recording = LoadRecording()
+    elif action_encoding == "G":
+        if recording is None:
+            print("Load or Capture Recoding First")
+        else:
+            EstimatePowerSpectralDensity(recording)
+    elif action_encoding == "E":
+        exit(0)
+    return recording
+
+
 if __name__ == "__main__":
-    recording = None
+    device_active_recording = None
+    ambient_recording = None
+    is_ambient_recording_selected = None
     while 1:
+        if is_ambient_recording_selected is None:
+            # select recording
+            recording_selection_encoding = input(
+                "==================================================\n"
+                "Please select a recording:\n"
+                "\t[D]evice Active Recording\n"
+                "\t[A]mbient Recording\n"
+                "==================================================\n"
+            )
+            is_ambient_recording_selected = recording_selection_encoding == "A"
+
+        recording_selection_string = "DEVICE ACTIVE"
+        if is_ambient_recording_selected:
+            recording_selection_string = "AMBIENT"
+
         # prompt user for action
         action_encoding = input(
+            "==================================================\n"
+            "           "
+            + recording_selection_string
+            + " RECORDING SELECTED                 \n"
             "==================================================\n"
             "Please choose one of the following actions:\n"
             "\t[C]apture Recording\n"
@@ -64,30 +111,20 @@ if __name__ == "__main__":
             "\t[S]ave Recording\n"
             "\t[L]oad Recording\n"
             "\t[G]raph Estimate Proportional PSD of Recording\n"
+            "\t[R]eselect Recording\n"
             "\t[E]xit\n"
             "==================================================\n"
         )
+        if action_encoding == "R":
+            is_ambient_recording_selected = None
+            continue
 
         # perform action
-        if action_encoding == "C":
-            recording = CaptureRecording()
-            recording = recording[:, 0]
-        elif action_encoding == "P":
-            if recording is None:
-                print("Load or Capture Recoding First")
-            else:
-                PlayRecording(recording)
-        elif action_encoding == "S":
-            if recording is None:
-                print("Load or Capture Recoding First")
-            else:
-                SaveRecording(recording)
-        elif action_encoding == "L":
-            recording = LoadRecording()
-        elif action_encoding == "G":
-            if recording is None:
-                print("Load or Capture Recoding First")
-            else:
-                EstimatePowerSpectralDensity(recording)
-        elif action_encoding == "E":
-            exit(0)
+        if is_ambient_recording_selected:
+            ambient_recording = CLIManipulateRecording(
+                ambient_recording, action_encoding
+            )
+        else:
+            device_active_recording = CLIManipulateRecording(
+                device_active_recording, action_encoding
+            )
