@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sounddevice as sd
+import soundfile as sf
 import scipy.signal as signal
 
 # Audio Capture Constants
@@ -37,7 +38,21 @@ def EstimatePowerSpectralDensity(recording):
     plt.ylabel("**proportional** PSD [W/Hz]")
     plt.show()
 
+def SaveRecording(recording):
+    file_path = input("Enter the relative path to the recording file: ")
+    sf.write(file_path, recording, audio_sample_freq_hz)
+
+def LoadRecording():
+    file_path = input("Enter the relative path to the recording file: ")
+    recording, _ = sf.read(file_path)
+    return recording
+
 if __name__ == "__main__":
     recording = CaptureRecording()
     PlayRecording(recording)
     EstimatePowerSpectralDensity(recording)
+
+    # Test Save and Load Recording
+    SaveRecording(recording)
+    recording = LoadRecording()
+    PlayRecording(recording)
