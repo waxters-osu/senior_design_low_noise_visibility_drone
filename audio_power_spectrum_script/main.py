@@ -5,7 +5,7 @@ import soundfile as sf
 import scipy.signal as signal
 
 # Audio Capture Constants
-audio_duration_s = 3  # seconds
+audio_duration_s = 10  # seconds
 audio_sample_freq_hz = 44100  # std sample rate of 44100 Hz
 audio_channel_count = 1  # only care about 1 channel for this
 audio_sample_count = audio_duration_s * audio_sample_freq_hz
@@ -30,15 +30,34 @@ def PlayRecording(recording):
     sd.wait()
 
 
+def PlotPSD(f, Pxx_den):
+    plt.semilogy(f, Pxx_den)
+    plt.xlabel("frequency [Hz]")
+    plt.ylabel("**proportional** PSD [W/Hz]")
+    plt.show()
+
+
 def EstimatePowerSpectralDensity(recording):
     # Estimate the Power Spectral Density (PSD) of the recorded audio--note that the
     # estimate is proportional to the real PSD since the microphone's sensitivity is
     # unknown.
     f, Pxx_den = signal.welch(recording, audio_sample_freq_hz)
-    plt.semilogy(f, Pxx_den)
-    plt.xlabel("frequency [Hz]")
-    plt.ylabel("**proportional** PSD [W/Hz]")
-    plt.show()
+    PlotPSD(f, Pxx_den)
+
+
+def DifferenceEstimatePowerSpectralDensity(background_recording, active_recording):
+    f_bg, Pxx_den_bg = signal.welch(background_recording, audio_sample_freq_hz)
+    f_active, Pxx_den_active = signal.welch(active_recording, audio_sample_freq_hz)
+
+    # make bg and active the same maximum size
+    length = max(len(f_bg), len(f_active))
+    f = f_bg[:length]  # f should be the same, choose bg.
+    Pxx_den_bg = Pxx_den_bg[:length]
+    Pxx_den_active = Pxx_den_active[:length]
+
+    # compute difference
+    Pxx_den_delta = Pxx_den_active - Pxx_den_bg
+    PlotPSD(f, Pxx_den_delta)
 
 
 def SaveRecording(recording):
@@ -111,15 +130,17 @@ if __name__ == "__main__":
             "\t[S]ave Recording\n"
             "\t[L]oad Recording\n"
             "\t[G]raph Estimate Proportional PSD of Recording\n"
+            "\t[GD] Graph Difference between Active Device and\n"
+            "\t\tAmbient Recordings\n"
             "\t[R]eselect Recording\n"
             "\t[E]xit\n"
             "==================================================\n"
         )
+
+        # perform action
         if action_encoding == "R":
             is_ambient_recording_selected = None
             continue
-
-        # perform action
         if is_ambient_recording_selected:
             ambient_recording = CLIManipulateRecording(
                 ambient_recording, action_encoding
@@ -127,4 +148,8 @@ if __name__ == "__main__":
         else:
             device_active_recording = CLIManipulateRecording(
                 device_active_recording, action_encoding
+            )
+        if action_encoding == "GD":
+            DifferenceEstimatePowerSpectralDensity(
+                ambient_recording, device_active_recording
             )
