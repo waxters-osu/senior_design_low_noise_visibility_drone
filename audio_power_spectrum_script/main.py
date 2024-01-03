@@ -15,7 +15,7 @@ audio_sample_period_s = 1.0 / audio_sample_freq_hz
 def CaptureRecording():
     print("Recording is starting...")
     recording = sd.rec(
-        audio_channel_count,
+        audio_sample_count,
         samplerate=audio_sample_freq_hz,
         channels=audio_channel_count,
         # dtype="float64",
