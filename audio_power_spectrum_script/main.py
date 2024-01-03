@@ -74,9 +74,13 @@ def SaveRecording(recording):
 
 
 def LoadRecording():
-    file_path = input("Enter the relative path to the recording file: ")
-    recording, _ = sf.read(file_path)
-    return recording
+    try:    
+        file_path = input("Enter the relative path to the recording file: ")
+        recording, _ = sf.read(file_path)
+        return recording
+    except:
+        print("File not found")
+
 
 
 def CLIManipulateRecording(recording, action_encoding):
