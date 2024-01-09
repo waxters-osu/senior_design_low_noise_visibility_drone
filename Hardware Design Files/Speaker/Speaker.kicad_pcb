@@ -5,6 +5,14 @@
   )
 
   (paper "A4")
+  (title_block
+    (title "SPEAKER")
+    (date "2024-01-08")
+    (rev "A")
+    (company "OREGON STATE UNIVERSITY LNVD")
+    (comment 1 "AUTHOR: EVAN NEWELL")
+  )
+
   (layers
     (0 "F.Cu" signal)
     (31 "B.Cu" signal)
@@ -1234,7 +1242,7 @@
         (effects (font (size 0.393701 0.393701) (thickness 0.098425)))
       (tstamp 2ae9ee60-6ef1-4369-a910-ac0d71a614b9)
     )
-    (fp_text value "4.7u" (at 1.0818 -1.4224 unlocked) (layer "F.SilkS")
+    (fp_text value "4.7u" (at 1.031 -1.2192 unlocked) (layer "F.SilkS")
         (effects (font (size 0.393701 0.393701) (thickness 0.098425)))
       (tstamp 83d1c7c0-350f-4536-b77d-12f8852977f3)
     )
