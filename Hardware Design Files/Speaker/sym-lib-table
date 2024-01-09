@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "2024-01-05_00-05-02")(type "KiCad")(uri "${KIPRJMOD}/Footprints.pretty/LMV358IDR/KiCADv6/2024-01-05_00-05-02.kicad_sym")(options "")(descr ""))
+  (lib (name "Diff_to_single_amp")(type "KiCad")(uri "${KIPRJMOD}/Symbol_library/Diff_to_single_amp.kicad_sym")(options "")(descr ""))
+  (lib (name "Symbol_library")(type "KiCad")(uri "${KIPRJMOD}/Symbol_library/Symbol_library.kicad_sym")(options "")(descr ""))
+)
