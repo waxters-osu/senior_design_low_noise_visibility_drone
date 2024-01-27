@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "LM61495QRPHRQ1")(type "KiCad")(uri "/home/silas/osu/senior_design_low_noise_visibility_drone/Hardware Design Files/power_electronics/kicad_resources/LM61495QRPHRQ1.kicad_sym")(options "")(descr ""))
+)
