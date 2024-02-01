@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 0,
+    "active_layer": 41,
     "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_netclasses": [],
@@ -64,11 +64,11 @@
       39,
       40
     ],
-    "visible_layers": "fffffff_ffffffff",
+    "visible_layers": "ffdffff_7fffffff",
     "zone_display_mode": 0
   },
   "meta": {
-    "filename": "buck_converter_5v.kicad_prl",
+    "filename": "buck_converter_3v.kicad_prl",
     "version": 3
   },
   "project": {
