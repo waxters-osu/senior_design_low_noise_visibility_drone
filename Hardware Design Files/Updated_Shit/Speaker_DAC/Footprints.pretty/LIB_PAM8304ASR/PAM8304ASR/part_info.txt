@@ -1,0 +1,9 @@
+Manufacturer=Diodes Incorporated
+PartNumber=PAM8304ASR
+PartCategory=Integrated Circuit
+PackageCategory=Small Outline Packages
+PinCount=8
+Version=2.1
+Released=2018-12-10 10:35:14
+Downloaded=2024-01-05 01:39:07
+3D=Y

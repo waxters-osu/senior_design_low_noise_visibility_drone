@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'PAM8304ASR'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Diodes Incorporated", "PAM8304ASR" (!) = "", "SOP65P490X110-8N", "Small Outline Packages", "621-PAM8304ASR", "https://www.mouser.co.uk/ProductDetail/Diodes-Incorporated/PAM8304ASR?qs=T3IxTwwp%252B0thqqOUH1TiHA%3D%3D", "PAM8304ASR DiodesZetex, Audio Amplifier, 8-Pin MSOP Mono", "https://www.diodes.com/assets/Datasheets/PAM8304.pdf", "1.1 mm"
+END_PART
+
+END.
