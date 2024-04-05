@@ -1,0 +1,8 @@
+"Reference","Value","Footprint","Datasheet","DIGIKEY PART #","PRICE","Qty"
+"C1","1u","Footprints:Cap0805","https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1105/CL21B105KAFNNNE_Spec.pdf","CL21B105KAFNNNE","","1"
+"C2, C3","4.7u","Footprints:Cap0805","https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/41/CL21A475KAQNNNE_Spec.pdf","CL21A475KAQNNNE","$0.10","2"
+"FB1, FB2","FerriteBead","Footprints:IND_BLM15_0402_MUR-M","~https://www.murata.com/en-us/products/productdata/8796740059166/ENFA0018.pdf","BLM15AG121SN1D","$0.10","2"
+"J1","Screw_Terminal_01x07","Footprints:CUI_TB001-500-07BE","~https://www.cuidevices.com/product/resource/tb001-500.pdf","TB001-500-07BE","$0.96","1"
+"LS1","Speaker","","~https://www.cuidevices.com/product/resource/cds-4224-84sp.pdf","CDS-4224-84SP","$7.82","1"
+"R1, R2","10K","Footprints:RESC2012X60N","~https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf","RMCF0805FT10K0","$0.10","2"
+"U1-U3","PAM8304","Footprints:SOP65P490X110-8N","https://www.diodes.com/assets/Datasheets/PAM8304.pdf","PAM8304ASR","$0.70","3"
